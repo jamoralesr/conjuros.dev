@@ -92,7 +92,7 @@ new #[Layout('layouts.admin')] #[Title('Lección — Admin')] class extends Comp
         <flux:input wire:model="slug" label="Slug" required />
         <flux:input wire:model.number="order" type="number" label="Orden" required />
 
-        <flux:editor wire:model="body" label="Cuerpo" description="Contenido de la lección." />
+        <x-content-editor wire:model="body" label="Cuerpo" description="Contenido de la lección. Incluye bloques de código." />
 
         <flux:input wire:model="interactive_html_path" label="URL de HTML interactivo (CDN)" placeholder="https://…" />
 

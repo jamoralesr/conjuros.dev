@@ -117,7 +117,7 @@ new #[Layout('layouts.admin')] #[Title('Artículo — Admin')] class extends Com
         <flux:input wire:model="slug" label="Slug" required />
         <flux:textarea wire:model="excerpt" label="Resumen" rows="3" />
 
-        <flux:editor wire:model="body" label="Cuerpo" description="Escribe el artículo. Soporta headings, listas, código, citas y enlaces." />
+        <x-content-editor wire:model="body" label="Cuerpo" description="Incluye bloques de código, citas, listas y enlaces." />
 
         <div class="grid gap-4 md:grid-cols-2">
             <flux:select wire:model="access" label="Acceso">
