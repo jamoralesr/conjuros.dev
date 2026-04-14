@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+        <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
             <flux:sidebar.header>
-                <a href="{{ route('admin.dashboard') }}" wire:navigate class="flex items-center gap-2">
+                <a href="{{ route('admin.dashboard') }}" wire:navigate class="flex items-center gap-2.5">
                     <x-app-logo-icon class="size-6" />
-                    <flux:heading size="lg" class="!mb-0">Admin</flux:heading>
+                    <div class="flex items-baseline gap-2">
+                        <flux:heading size="lg" class="!mb-0 tracking-tight">Conjuros</flux:heading>
+                        <span class="label-mono text-zinc-400 dark:text-zinc-600">admin</span>
+                    </div>
                 </a>
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group heading="Panel" class="grid">
+                <flux:sidebar.group heading="Panel" class="grid [&>[data-flux-sidebar-heading]]:label-mono [&>[data-flux-sidebar-heading]]:!text-zinc-400 dark:[&>[data-flux-sidebar-heading]]:!text-zinc-600">
                     <flux:sidebar.item icon="home" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>
                         Dashboard
                     </flux:sidebar.item>
                 </flux:sidebar.group>
 
-                <flux:sidebar.group heading="Contenido" class="grid">
+                <flux:sidebar.group heading="Contenido" class="grid [&>[data-flux-sidebar-heading]]:label-mono [&>[data-flux-sidebar-heading]]:!text-zinc-400 dark:[&>[data-flux-sidebar-heading]]:!text-zinc-600">
                     @if (Route::has('admin.articles.index'))
                         <flux:sidebar.item icon="document-text" :href="route('admin.articles.index')" :current="request()->routeIs('admin.articles.*')" wire:navigate>Artículos</flux:sidebar.item>
                     @endif
@@ -35,7 +38,7 @@
                     @endif
                 </flux:sidebar.group>
 
-                <flux:sidebar.group heading="Taxonomía" class="grid">
+                <flux:sidebar.group heading="Taxonomía" class="grid [&>[data-flux-sidebar-heading]]:label-mono [&>[data-flux-sidebar-heading]]:!text-zinc-400 dark:[&>[data-flux-sidebar-heading]]:!text-zinc-600">
                     @if (Route::has('admin.categories.index'))
                         <flux:sidebar.item icon="folder" :href="route('admin.categories.index')" :current="request()->routeIs('admin.categories.*')" wire:navigate>Categorías</flux:sidebar.item>
                     @endif
@@ -47,7 +50,7 @@
                     @endif
                 </flux:sidebar.group>
 
-                <flux:sidebar.group heading="Negocio" class="grid">
+                <flux:sidebar.group heading="Negocio" class="grid [&>[data-flux-sidebar-heading]]:label-mono [&>[data-flux-sidebar-heading]]:!text-zinc-400 dark:[&>[data-flux-sidebar-heading]]:!text-zinc-600">
                     @if (Route::has('admin.plans.index'))
                         <flux:sidebar.item icon="credit-card" :href="route('admin.plans.index')" :current="request()->routeIs('admin.plans.*')" wire:navigate>Planes</flux:sidebar.item>
                     @endif
@@ -66,7 +69,7 @@
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
         </flux:sidebar>
 
-        <flux:header class="lg:hidden">
+        <flux:header class="border-b border-zinc-200 dark:border-zinc-800 lg:hidden">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
             <flux:spacer />
             <flux:dropdown position="top" align="end">

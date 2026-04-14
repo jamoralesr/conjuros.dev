@@ -1,28 +1,32 @@
 <x-layouts::front>
-    <div class="py-6">
-        <flux:heading size="xl">Cursos</flux:heading>
-        <flux:text class="mt-2">Lecciones encadenadas con hilo conductor. Siempre pro.</flux:text>
-    </div>
+    <x-page-header
+        number="Sección 03"
+        eyebrow="Programas guiados"
+        title="Cursos"
+        subtitle="Lecciones encadenadas con hilo conductor. Siempre pro."
+    />
 
-    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        @forelse ($courses as $course)
-            <a href="{{ route('front.courses.show', $course) }}" wire:navigate class="block">
-                <flux:card class="h-full transition hover:border-primary-500">
-                    <div class="flex items-center gap-2">
-                        <flux:badge color="amber" size="sm">Pro</flux:badge>
-                        <flux:text class="text-xs uppercase text-zinc-500">{{ $course->category?->name ?? 'Curso' }}</flux:text>
-                    </div>
-                    <flux:heading class="mt-2">{{ $course->title }}</flux:heading>
-                    <flux:text class="mt-2">{{ $course->description }}</flux:text>
-                    <flux:text class="mt-3 text-xs text-zinc-500">{{ $course->lessons_count }} {{ \Illuminate\Support\Str::plural('lección', $course->lessons_count) }}</flux:text>
-                </flux:card>
-            </a>
-        @empty
-            <flux:text class="col-span-full text-center text-zinc-500">Aún no hay cursos publicados.</flux:text>
-        @endforelse
-    </div>
+    <section class="py-10">
+        <div class="grid gap-0 md:grid-cols-2 lg:grid-cols-3 md:[&>*]:border-l md:[&>*]:-ml-px md:[&>*:first-child]:ml-0 lg:[&>*:nth-child(3n+1)]:ml-0 md:[&>*]:border-t md:[&>*:first-child]:border-t md:[&>*]:-mt-px">
+            @forelse ($courses as $course)
+                <x-content-card
+                    :href="route('front.courses.show', $course)"
+                    :id="'COU-'.str_pad((string) $course->id, 3, '0', STR_PAD_LEFT)"
+                    :category="$course->category?->name ?? 'Curso'"
+                    :pro="true"
+                    :title="$course->title"
+                    :excerpt="$course->description"
+                    :meta="$course->lessons_count.' '.\Illuminate\Support\Str::plural('lección', $course->lessons_count)"
+                />
+            @empty
+                <p class="col-span-full border border-dashed border-zinc-200 p-10 text-center label-mono text-zinc-500 dark:border-zinc-800">
+                    Aún no hay cursos publicados.
+                </p>
+            @endforelse
+        </div>
 
-    <div class="mt-10">
-        {{ $courses->links() }}
-    </div>
+        <div class="mt-12">
+            {{ $courses->links() }}
+        </div>
+    </section>
 </x-layouts::front>

@@ -37,20 +37,22 @@ new #[Layout('layouts.admin')] #[Title('Tutoriales — Admin')] class extends Co
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <div class="flex items-center justify-between">
+<div>
+    <header class="flex items-end justify-between gap-6 border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
         <div>
-            <flux:heading size="xl">Tutoriales</flux:heading>
-            <flux:text class="mt-1">Pieza única con laboratorio y repositorio GitHub.</flux:text>
+            <div class="label-mono text-zinc-500">TUT · Laboratorios</div>
+            <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Tutoriales</h1>
+            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Pieza única con laboratorio y repositorio GitHub.</p>
         </div>
         <flux:button :href="route('admin.tutorials.create')" icon="plus" variant="primary" wire:navigate>Nuevo</flux:button>
-    </div>
+    </header>
 
-    <div class="mt-6 max-w-sm">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar…" icon="magnifying-glass" />
-    </div>
+    <div class="px-8 pb-10 pt-8">
+        <div class="max-w-sm">
+            <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar…" icon="magnifying-glass" />
+        </div>
 
-    <flux:table :paginate="$tutorials" class="mt-6">
+        <flux:table :paginate="$tutorials" class="mt-6">
         <flux:table.columns>
             <flux:table.column>Título</flux:table.column>
             <flux:table.column>Categoría</flux:table.column>
@@ -85,4 +87,5 @@ new #[Layout('layouts.admin')] #[Title('Tutoriales — Admin')] class extends Co
             @endforelse
         </flux:table.rows>
     </flux:table>
+    </div>
 </div>

@@ -1,37 +1,52 @@
 <x-layouts::front>
-    <div class="py-6">
-        <flux:heading size="xl">Recursos</flux:heading>
-        <flux:text class="mt-2">Prompts, skills, comandos, agentes, snippets, enlaces curados.</flux:text>
-    </div>
+    <x-page-header
+        number="Sección 04"
+        eyebrow="Biblioteca"
+        title="Recursos"
+        subtitle="Prompts, skills, comandos, agentes, snippets, enlaces curados."
+    />
 
-    <div class="mt-6 flex flex-wrap gap-2">
-        <a href="{{ route('front.resources.index') }}" wire:navigate>
-            <flux:badge :color="$currentType === '' ? 'primary' : 'zinc'">Todos</flux:badge>
-        </a>
-        @foreach ($types as $type)
-            <a href="{{ route('front.resources.index', ['type' => $type->value]) }}" wire:navigate>
-                <flux:badge :color="$currentType === $type->value ? 'primary' : 'zinc'">{{ $type->label() }}</flux:badge>
+    <section class="py-10">
+        <div class="mb-8 flex flex-wrap items-center gap-2 border-b border-zinc-200 pb-6 dark:border-zinc-800">
+            <span class="label-mono mr-2 text-zinc-500">Filtrar</span>
+            <a href="{{ route('front.resources.index') }}" wire:navigate
+               @class([
+                   'label-mono border px-3 py-1.5 transition',
+                   'border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900' => $currentType === '',
+                   'border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-100 dark:hover:text-zinc-100' => $currentType !== '',
+               ])>
+                Todos
             </a>
-        @endforeach
-    </div>
+            @foreach ($types as $type)
+                <a href="{{ route('front.resources.index', ['type' => $type->value]) }}" wire:navigate
+                   @class([
+                       'label-mono border px-3 py-1.5 transition',
+                       'border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900' => $currentType === $type->value,
+                       'border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-zinc-100 dark:hover:text-zinc-100' => $currentType !== $type->value,
+                   ])>
+                    {{ $type->label() }}
+                </a>
+            @endforeach
+        </div>
 
-    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        @forelse ($resources as $resource)
-            <a href="{{ route('front.resources.show', $resource) }}" wire:navigate class="block">
-                <flux:card class="h-full transition hover:border-primary-500">
-                    <flux:text class="text-xs uppercase text-zinc-500">{{ $resource->type->label() }}</flux:text>
-                    <flux:heading class="mt-2">{{ $resource->title }}</flux:heading>
-                    @if ($resource->description)
-                        <flux:text class="mt-2">{{ $resource->description }}</flux:text>
-                    @endif
-                </flux:card>
-            </a>
-        @empty
-            <flux:text class="col-span-full text-center text-zinc-500">Aún no hay recursos en esta categoría.</flux:text>
-        @endforelse
-    </div>
+        <div class="grid gap-0 md:grid-cols-2 lg:grid-cols-3 md:[&>*]:border-l md:[&>*]:-ml-px md:[&>*:first-child]:ml-0 lg:[&>*:nth-child(3n+1)]:ml-0 md:[&>*]:border-t md:[&>*:first-child]:border-t md:[&>*]:-mt-px">
+            @forelse ($resources as $resource)
+                <x-content-card
+                    :href="route('front.resources.show', $resource)"
+                    :id="'RES-'.str_pad((string) $resource->id, 3, '0', STR_PAD_LEFT)"
+                    :category="$resource->type->label()"
+                    :title="$resource->title"
+                    :excerpt="$resource->description"
+                />
+            @empty
+                <p class="col-span-full border border-dashed border-zinc-200 p-10 text-center label-mono text-zinc-500 dark:border-zinc-800">
+                    Aún no hay recursos en esta categoría.
+                </p>
+            @endforelse
+        </div>
 
-    <div class="mt-10">
-        {{ $resources->links() }}
-    </div>
+        <div class="mt-12">
+            {{ $resources->links() }}
+        </div>
+    </section>
 </x-layouts::front>

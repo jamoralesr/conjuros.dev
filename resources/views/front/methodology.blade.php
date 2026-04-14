@@ -1,8 +1,13 @@
 <x-layouts::front>
-    <article class="mx-auto max-w-3xl py-6">
-        <flux:heading size="xl" class="!text-4xl">Cómo hacemos Conjuros</flux:heading>
+    <x-page-header
+        number="Nº 003"
+        eyebrow="Ensayo fundacional"
+        title="Cómo hacemos Conjuros"
+        subtitle="El método detrás del contenido: un oficio practicado en colaboración con la IA, no a pesar de ella."
+    />
 
-        <div class="prose prose-zinc mt-8 max-w-none text-lg dark:prose-invert">
+    <article class="mx-auto max-w-3xl py-12">
+        <div class="prose prose-zinc max-w-none text-lg dark:prose-invert">
             <p>
                 <strong>Conjuros.dev es un proyecto construido con IA, no a pesar de ella.</strong>
                 Todo el contenido — artículos, tutoriales, cursos, código — se produce en colaboración activa con Claude.

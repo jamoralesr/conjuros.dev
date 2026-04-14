@@ -46,26 +46,28 @@ new #[Layout('layouts.admin')] #[Title('Recursos — Admin')] class extends Comp
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <div class="flex items-center justify-between">
+<div>
+    <header class="flex items-end justify-between gap-6 border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
         <div>
-            <flux:heading size="xl">Recursos</flux:heading>
-            <flux:text class="mt-1">Prompts, skills, commands, hooks, agents, snippets, links, tools, docs.</flux:text>
+            <div class="label-mono text-zinc-500">RES · Biblioteca</div>
+            <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Recursos</h1>
+            <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Prompts, skills, commands, hooks, agents, snippets, links, tools, docs.</p>
         </div>
         <flux:button :href="route('admin.resources.create')" icon="plus" variant="primary" wire:navigate>Nuevo</flux:button>
-    </div>
+    </header>
 
-    <div class="mt-6 flex gap-3">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar…" icon="magnifying-glass" class="max-w-sm" />
-        <flux:select wire:model.live="typeFilter" class="max-w-xs">
-            <flux:select.option value="">Todos los tipos</flux:select.option>
-            @foreach ($types as $type)
-                <flux:select.option :value="$type->value">{{ $type->label() }}</flux:select.option>
-            @endforeach
-        </flux:select>
-    </div>
+    <div class="px-8 pb-10 pt-8">
+        <div class="flex gap-3">
+            <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar…" icon="magnifying-glass" class="max-w-sm" />
+            <flux:select wire:model.live="typeFilter" class="max-w-xs">
+                <flux:select.option value="">Todos los tipos</flux:select.option>
+                @foreach ($types as $type)
+                    <flux:select.option :value="$type->value">{{ $type->label() }}</flux:select.option>
+                @endforeach
+            </flux:select>
+        </div>
 
-    <flux:table :paginate="$resources" class="mt-6">
+        <flux:table :paginate="$resources" class="mt-6">
         <flux:table.columns>
             <flux:table.column>Título</flux:table.column>
             <flux:table.column>Tipo</flux:table.column>
@@ -96,4 +98,5 @@ new #[Layout('layouts.admin')] #[Title('Recursos — Admin')] class extends Comp
             @endforelse
         </flux:table.rows>
     </flux:table>
+    </div>
 </div>

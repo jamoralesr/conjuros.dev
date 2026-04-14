@@ -3,50 +3,84 @@
 @endphp
 
 <x-layouts::front>
-    <div class="mx-auto max-w-3xl py-10 text-center">
-        <flux:heading size="xl" class="!text-4xl">Un solo plan. Acceso completo.</flux:heading>
-        <flux:text class="mt-3 text-lg">Tutoriales pro, cursos, nuevas lecciones y recursos curados.</flux:text>
-    </div>
+    <x-page-header
+        number="Nº 002"
+        eyebrow="Suscripción"
+        title="Un solo plan. Acceso completo."
+        subtitle="Tutoriales pro, cursos, nuevas lecciones y recursos curados. Sin niveles, sin sorpresas."
+    />
 
     @if ($plan)
-        <div class="mx-auto mt-10 grid max-w-3xl gap-6 md:grid-cols-2">
-            <flux:card>
-                <flux:heading size="lg">Mensual</flux:heading>
-                <div class="mt-4 text-5xl font-bold">USD {{ number_format($plan->price_monthly, 0) }}</div>
-                <flux:text class="mt-1">por mes</flux:text>
-                @auth
-                    <flux:button :href="route('checkout.start', ['plan' => $plan->slug, 'interval' => 'monthly'])" variant="primary" class="mt-6 w-full">
-                        Suscribirme
-                    </flux:button>
-                @else
-                    <flux:button :href="route('register')" variant="primary" class="mt-6 w-full" wire:navigate>
-                        Crear cuenta
-                    </flux:button>
-                @endauth
-            </flux:card>
+        <section class="py-16">
+            <div class="grid gap-0 md:grid-cols-2 md:[&>*]:border-l md:[&>*:first-child]:border-l-0 md:[&>*]:-ml-px">
 
-            <flux:card class="border-primary-500">
-                <flux:heading size="lg">Anual</flux:heading>
-                <div class="mt-4 text-5xl font-bold">USD {{ number_format($plan->price_yearly, 0) }}</div>
-                <flux:text class="mt-1">al año <span class="text-primary-500">(~2 meses gratis)</span></flux:text>
-                @auth
-                    <flux:button :href="route('checkout.start', ['plan' => $plan->slug, 'interval' => 'yearly'])" variant="primary" class="mt-6 w-full">
-                        Suscribirme
-                    </flux:button>
-                @else
-                    <flux:button :href="route('register')" variant="primary" class="mt-6 w-full" wire:navigate>
-                        Crear cuenta
-                    </flux:button>
-                @endauth
-            </flux:card>
-        </div>
+                {{-- Mensual --}}
+                <div class="border border-zinc-200 bg-white p-10 dark:border-zinc-800 dark:bg-zinc-950">
+                    <div class="flex items-center justify-between label-mono text-zinc-500">
+                        <span>Plan 01</span>
+                        <span>Flexible</span>
+                    </div>
+                    <h2 class="mt-6 text-2xl font-bold tracking-tight">Mensual</h2>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-bold tracking-tight md:text-6xl">USD {{ number_format($plan->price_monthly, 0) }}</span>
+                        <span class="label-mono text-zinc-500">/ mes</span>
+                    </div>
+                    <p class="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        Para quienes quieren probar antes de comprometerse al año completo.
+                    </p>
+                    <div class="mt-8">
+                        @auth
+                            <flux:button :href="route('checkout.start', ['plan' => $plan->slug, 'interval' => 'monthly'])" variant="primary" class="w-full">
+                                Suscribirme
+                            </flux:button>
+                        @else
+                            <flux:button :href="route('register')" variant="primary" class="w-full" wire:navigate>
+                                Crear cuenta
+                            </flux:button>
+                        @endauth
+                    </div>
+                </div>
+
+                {{-- Anual --}}
+                <div class="relative border border-zinc-900 bg-zinc-900 p-10 text-zinc-100 dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900">
+                    <div class="flex items-center justify-between label-mono text-zinc-400 dark:text-zinc-600">
+                        <span>Plan 02</span>
+                        <span>— Recomendado</span>
+                    </div>
+                    <h2 class="mt-6 text-2xl font-bold tracking-tight">Anual</h2>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-bold tracking-tight md:text-6xl">USD {{ number_format($plan->price_yearly, 0) }}</span>
+                        <span class="label-mono text-zinc-400 dark:text-zinc-600">/ año</span>
+                    </div>
+                    <p class="mt-4 text-sm leading-relaxed text-zinc-300 dark:text-zinc-600">
+                        Pagas doce y te llevas ~catorce meses. El plan de quien ya decidió.
+                    </p>
+                    <div class="mt-8">
+                        @auth
+                            <flux:button :href="route('checkout.start', ['plan' => $plan->slug, 'interval' => 'yearly'])" variant="primary" class="w-full">
+                                Suscribirme
+                            </flux:button>
+                        @else
+                            <flux:button :href="route('register')" variant="primary" class="w-full" wire:navigate>
+                                Crear cuenta
+                            </flux:button>
+                        @endauth
+                    </div>
+                </div>
+
+            </div>
+        </section>
     @else
-        <flux:callout variant="warning" class="mx-auto max-w-xl">
-            <flux:callout.heading>Planes no configurados</flux:callout.heading>
-        </flux:callout>
+        <section class="py-16">
+            <flux:callout variant="warning" class="mx-auto max-w-xl">
+                <flux:callout.heading>Planes no configurados</flux:callout.heading>
+            </flux:callout>
+        </section>
     @endif
 
-    <div class="mx-auto mt-12 max-w-2xl text-center text-sm text-zinc-500">
-        Factura: Siete PM SpA · Pagos procesados por Stripe
-    </div>
+    <section class="border-t border-zinc-200 py-10 dark:border-zinc-800">
+        <div class="mx-auto max-w-2xl text-center label-mono text-zinc-500">
+            Factura: Siete PM SpA · Pagos procesados por Stripe
+        </div>
+    </section>
 </x-layouts::front>
