@@ -78,11 +78,9 @@
                     <div>
                         <flux:heading size="lg">Newsletter</flux:heading>
                         <flux:text class="mt-2">Un correo cada dos semanas con el contenido nuevo. Sin ruido.</flux:text>
-                        @if (class_exists(\App\Livewire\Front\NewsletterForm::class))
-                            <div class="mt-4">
-                                <livewire:front.newsletter-form />
-                            </div>
-                        @endif
+                        <div class="mt-4">
+                            <livewire:front.newsletter-form />
+                        </div>
                     </div>
                 </div>
                 <div class="mt-10 border-t border-zinc-200 pt-6 text-xs text-zinc-500 dark:border-zinc-800">
