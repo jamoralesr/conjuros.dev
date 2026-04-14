@@ -19,7 +19,19 @@ return [
     ],
 
     'resend' => [
-        'key' => env('RESEND_API_KEY'),
+        'key' => env('RESEND_KEY'),
+    ],
+
+    'buttondown' => [
+        'key' => env('BUTTONDOWN_API_KEY'),
+        'endpoint' => env('BUTTONDOWN_ENDPOINT', 'https://api.buttondown.email/v1'),
+    ],
+
+    'stripe' => [
+        'prices' => [
+            'standard_monthly' => env('STRIPE_PRICE_STANDARD_MONTHLY'),
+            'standard_yearly' => env('STRIPE_PRICE_STANDARD_YEARLY'),
+        ],
     ],
 
     'ses' => [
