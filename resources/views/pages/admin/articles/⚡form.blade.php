@@ -117,11 +117,7 @@ new #[Layout('layouts.admin')] #[Title('Artículo — Admin')] class extends Com
         <flux:input wire:model="slug" label="Slug" required />
         <flux:textarea wire:model="excerpt" label="Resumen" rows="3" />
 
-        <div>
-            <flux:label>Cuerpo (HTML)</flux:label>
-            <flux:textarea wire:model="body" rows="20" class="font-mono text-sm" />
-            <flux:description>HTML directo. El editor TipTap llegará en fase posterior.</flux:description>
-        </div>
+        <flux:editor wire:model="body" label="Cuerpo" description="Escribe el artículo. Soporta headings, listas, código, citas y enlaces." />
 
         <div class="grid gap-4 md:grid-cols-2">
             <flux:select wire:model="access" label="Acceso">

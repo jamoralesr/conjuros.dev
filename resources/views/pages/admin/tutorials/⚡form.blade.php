@@ -122,10 +122,7 @@ new #[Layout('layouts.admin')] #[Title('Tutorial — Admin')] class extends Comp
         <flux:input wire:model="github_url" label="Repositorio GitHub" type="url" placeholder="https://github.com/..." />
         <flux:textarea wire:model="excerpt" label="Resumen" rows="3" />
 
-        <div>
-            <flux:label>Cuerpo (HTML)</flux:label>
-            <flux:textarea wire:model="body" rows="20" class="font-mono text-sm" />
-        </div>
+        <flux:editor wire:model="body" label="Cuerpo" description="Escribe el tutorial paso a paso." />
 
         <div class="grid gap-4 md:grid-cols-2">
             <flux:select wire:model="access" label="Acceso">
