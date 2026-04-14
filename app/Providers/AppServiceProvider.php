@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\ButtondownClient;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -10,12 +11,12 @@ use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        $this->app->singleton(ButtondownClient::class, fn () => new ButtondownClient(
+            apiKey: (string) config('services.buttondown.key', ''),
+            endpoint: (string) config('services.buttondown.endpoint'),
+        ));
     }
 
     /**
