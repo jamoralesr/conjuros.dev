@@ -79,3 +79,15 @@ select:focus[data-flux-control] {
     letter-spacing: 0.15em;
     line-height: 1;
 }
+
+/* Sharp corners on Flux buttons, form controls and cards to match the editorial grid.
+   Override needed because Flux applies rounded-lg/md/xl as utility classes. */
+[data-flux-button],
+[data-flux-card],
+[data-flux-input] input,
+[data-flux-input] select,
+[data-flux-input] textarea,
+[data-flux-select] select,
+[data-flux-field] > :where(input, select, textarea) {
+    border-radius: 0 !important;
+}

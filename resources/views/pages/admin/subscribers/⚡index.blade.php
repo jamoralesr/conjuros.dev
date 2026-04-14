@@ -31,15 +31,19 @@ new #[Layout('layouts.admin')] #[Title('Suscriptores — Admin')] class extends 
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">Suscriptores activos</flux:heading>
-    <flux:text class="mt-1">Usuarios con suscripción activa en Stripe.</flux:text>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">SUB · Membresías</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Suscriptores activos</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Usuarios con suscripción activa en Stripe.</p>
+    </header>
 
-    <div class="mt-6 max-w-sm">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar por email o nombre…" icon="magnifying-glass" />
-    </div>
+    <div class="px-8 pb-10 pt-8">
+        <div class="max-w-sm">
+            <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar por email o nombre…" icon="magnifying-glass" />
+        </div>
 
-    <flux:table :paginate="$subscribers" class="mt-6">
+        <flux:table :paginate="$subscribers" class="mt-6">
         <flux:table.columns>
             <flux:table.column>Nombre</flux:table.column>
             <flux:table.column>Email</flux:table.column>
@@ -63,4 +67,5 @@ new #[Layout('layouts.admin')] #[Title('Suscriptores — Admin')] class extends 
             @endforelse
         </flux:table.rows>
     </flux:table>
+    </div>
 </div>

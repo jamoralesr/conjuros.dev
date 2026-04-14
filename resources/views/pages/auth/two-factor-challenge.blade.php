@@ -25,6 +25,7 @@
         >
             <div x-show="!showRecoveryInput">
                 <x-auth-header
+                    eyebrow="2FA · Autenticación"
                     :title="__('Authentication code')"
                     :description="__('Enter the authentication code provided by your authenticator application.')"
                 />
@@ -32,6 +33,7 @@
 
             <div x-show="showRecoveryInput">
                 <x-auth-header
+                    eyebrow="2FA · Código de recuperación"
                     :title="__('Recovery code')"
                     :description="__('Please confirm access to your account by entering one of your emergency recovery codes.')"
                 />

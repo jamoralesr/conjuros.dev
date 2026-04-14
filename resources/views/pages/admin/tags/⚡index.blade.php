@@ -63,10 +63,15 @@ new #[Layout('layouts.admin')] #[Title('Tags — Admin')] class extends Componen
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">Tags</flux:heading>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">TAG · Taxonomía</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Tags</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Etiquetas libres para cruzar contenido sin jerarquía.</p>
+    </header>
 
-    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+    <div class="px-8 pb-10 pt-8">
+        <div class="grid gap-6 lg:grid-cols-2">
         <flux:table>
             <flux:table.columns>
                 <flux:table.column>Nombre</flux:table.column>
@@ -106,5 +111,6 @@ new #[Layout('layouts.admin')] #[Title('Tags — Admin')] class extends Componen
                 </div>
             </form>
         </flux:card>
+        </div>
     </div>
 </div>

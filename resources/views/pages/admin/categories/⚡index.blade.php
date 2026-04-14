@@ -66,10 +66,15 @@ new #[Layout('layouts.admin')] #[Title('Categorías — Admin')] class extends C
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">Categorías</flux:heading>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">CAT · Taxonomía</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Categorías</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Agrupan contenido por tema. Se comparten entre artículos, tutoriales y cursos.</p>
+    </header>
 
-    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+    <div class="px-8 pb-10 pt-8">
+        <div class="grid gap-6 lg:grid-cols-2">
         <div>
             <flux:table>
                 <flux:table.columns>
@@ -114,6 +119,7 @@ new #[Layout('layouts.admin')] #[Title('Categorías — Admin')] class extends C
                     </div>
                 </form>
             </flux:card>
+        </div>
         </div>
     </div>
 </div>

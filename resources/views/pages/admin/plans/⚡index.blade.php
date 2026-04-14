@@ -60,11 +60,15 @@ new #[Layout('layouts.admin')] #[Title('Planes — Admin')] class extends Compon
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">Planes</flux:heading>
-    <flux:text class="mt-1">Precios en USD. Los IDs de Stripe se inyectan desde `.env` por defecto.</flux:text>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">PLN · Negocio</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Planes</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Precios en USD. Los IDs de Stripe se inyectan desde <code class="font-mono text-xs">.env</code> por defecto.</p>
+    </header>
 
-    <flux:table class="mt-6">
+    <div class="px-8 pb-10 pt-8">
+        <flux:table>
         <flux:table.columns>
             <flux:table.column>Nombre</flux:table.column>
             <flux:table.column>Mensual</flux:table.column>
@@ -93,7 +97,7 @@ new #[Layout('layouts.admin')] #[Title('Planes — Admin')] class extends Compon
         </flux:table.rows>
     </flux:table>
 
-    <flux:card class="mt-6 max-w-2xl">
+        <flux:card class="mt-6 max-w-2xl">
         <flux:heading>{{ $editingId ? 'Editar plan' : 'Nuevo plan' }}</flux:heading>
         <form wire:submit="save" class="mt-4 space-y-4">
             <flux:input wire:model="name" label="Nombre" required />
@@ -106,5 +110,6 @@ new #[Layout('layouts.admin')] #[Title('Planes — Admin')] class extends Compon
             <flux:input wire:model="stripe_price_id_yearly" label="Stripe price ID anual" placeholder="price_…" />
             <flux:button type="submit" variant="primary" size="sm">Guardar</flux:button>
         </form>
-    </flux:card>
+        </flux:card>
+    </div>
 </div>
