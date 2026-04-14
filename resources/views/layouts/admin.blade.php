@@ -6,12 +6,9 @@
     <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
         <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
             <flux:sidebar.header>
-                <a href="{{ route('admin.dashboard') }}" wire:navigate class="flex items-center gap-2.5">
-                    <x-app-logo-icon class="size-6" />
-                    <div class="flex items-baseline gap-2">
-                        <flux:heading size="lg" class="!mb-0 tracking-tight">Conjuros</flux:heading>
-                        <span class="label-mono text-zinc-400 dark:text-zinc-600">admin</span>
-                    </div>
+                <a href="{{ route('admin.dashboard') }}" wire:navigate class="flex items-baseline gap-2">
+                    <flux:heading size="lg" class="!mb-0 tracking-tight">Conjuros</flux:heading>
+                    <span class="label-mono text-zinc-400 dark:text-zinc-600">admin</span>
                 </a>
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>

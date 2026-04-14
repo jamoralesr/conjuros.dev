@@ -6,12 +6,9 @@
     </head>
     <body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
         <flux:header class="border-b border-zinc-200 bg-white/90 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
-            <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-2.5">
-                <x-app-logo-icon class="size-6" />
-                <div class="flex items-baseline gap-2">
-                    <flux:heading size="lg" class="!mb-0 tracking-tight">Conjuros.dev</flux:heading>
-                    <span class="label-mono hidden text-zinc-400 dark:text-zinc-600 sm:inline">v0.1</span>
-                </div>
+            <a href="{{ route('home') }}" wire:navigate class="flex items-baseline gap-2">
+                <flux:heading size="lg" class="!mb-0 tracking-tight">Conjuros.dev</flux:heading>
+                <span class="label-mono hidden text-zinc-400 dark:text-zinc-600 sm:inline">v0.1</span>
             </a>
 
             <flux:navbar class="-mb-px max-lg:hidden">
