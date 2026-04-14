@@ -108,11 +108,15 @@ new #[Layout('layouts.admin')] #[Title('Artículo — Admin')] class extends Com
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">{{ $article ? 'Editar artículo' : 'Nuevo artículo' }}</flux:heading>
-    <flux:text class="mt-1">Libre o pro, sin repo asociado.</flux:text>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">ART · {{ $article ? 'Editar' : 'Nuevo' }}{{ $article ? ' · ART-'.str_pad((string) $article->id, 3, '0', STR_PAD_LEFT) : '' }}</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">{{ $article ? 'Editar artículo' : 'Nuevo artículo' }}</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Libre o pro, sin repo asociado.</p>
+    </header>
 
-    <form wire:submit="save" class="mt-6 max-w-3xl space-y-6">
+    <div class="px-8 pb-10 pt-8">
+        <form wire:submit="save" class="max-w-3xl space-y-6">
         <flux:input wire:model.live.debounce.500ms="title" label="Título" required />
         <flux:input wire:model="slug" label="Slug" required />
         <flux:textarea wire:model="excerpt" label="Resumen" rows="3" />
@@ -152,9 +156,10 @@ new #[Layout('layouts.admin')] #[Title('Artículo — Admin')] class extends Com
             <flux:checkbox wire:model="publishNow" label="Publicar ahora" />
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 border-t border-zinc-200 pt-6 dark:border-zinc-800">
             <flux:button type="submit" variant="primary">Guardar</flux:button>
             <flux:button :href="route('admin.articles.index')" variant="ghost" wire:navigate>Cancelar</flux:button>
         </div>
-    </form>
+        </form>
+    </div>
 </div>

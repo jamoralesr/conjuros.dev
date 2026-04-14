@@ -83,11 +83,15 @@ new #[Layout('layouts.admin')] #[Title('Lección — Admin')] class extends Comp
     }
 }; ?>
 
-<div class="px-6 py-10">
-    <flux:heading size="xl">{{ $lesson ? 'Editar lección' : 'Nueva lección' }}</flux:heading>
-    <flux:text class="mt-1">Curso: {{ $course->title }}</flux:text>
+<div>
+    <header class="border-b border-zinc-200 px-8 py-10 dark:border-zinc-800">
+        <div class="label-mono text-zinc-500">LES · {{ $lesson ? 'Editar' : 'Nueva' }}{{ $lesson ? ' · LES-'.str_pad((string) $lesson->id, 3, '0', STR_PAD_LEFT) : '' }} · Curso {{ $course->slug }}</div>
+        <h1 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">{{ $lesson ? 'Editar lección' : 'Nueva lección' }}</h1>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Curso: «{{ $course->title }}»</p>
+    </header>
 
-    <form wire:submit="save" class="mt-6 max-w-3xl space-y-6">
+    <div class="px-8 pb-10 pt-8">
+        <form wire:submit="save" class="max-w-3xl space-y-6">
         <flux:input wire:model.live.debounce.500ms="title" label="Título" required />
         <flux:input wire:model="slug" label="Slug" required />
         <flux:input wire:model.number="order" type="number" label="Orden" required />
@@ -98,9 +102,10 @@ new #[Layout('layouts.admin')] #[Title('Lección — Admin')] class extends Comp
 
         <flux:checkbox wire:model="publishNow" label="Publicada" />
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 border-t border-zinc-200 pt-6 dark:border-zinc-800">
             <flux:button type="submit" variant="primary">Guardar</flux:button>
             <flux:button :href="route('admin.lessons.index', $course)" variant="ghost" wire:navigate>Cancelar</flux:button>
         </div>
-    </form>
+        </form>
+    </div>
 </div>
